@@ -46,28 +46,28 @@ public class ProductService {
     }
 
     /**
-     * Retrieves a transaction by its ID.
+     * Retrieves a product by its ID.
      *
-     * @param productId the ID of the transaction.
-     * @return the transaction with the specified ID, or null if not found.
+     * @param productId the ID of the product.
+     * @return the product with the specified ID, or null if not found.
      */
     public Product getProductById(int productId) {
         return productDAO.getProductById(productId);
     }
 
     /**
-     * Updates an existing transaction.
+     * Updates an existing product.
      *
-     * @param product the transaction with updated details.
+     * @param product the product with updated details.
      */
-    public void updateTransaction(int productId, Product product) {
+    public void updateProduct(int productId, Product product) {
         productDAO.update(productId, product);
     }
 
     /**
-     * Deletes a transaction.
+     * Deletes a product.
      *
-     * @param productId The ID of the transaction to delete.
+     * @param productId The ID of the product to delete.
      */
     public void deleteProduct(int productId) {
         productDAO.delete(productId);
