@@ -1,10 +1,12 @@
 package com.pluralsight.NorthwindTradersSpringBoot2;
 
+import com.pluralsight.NorthwindTradersSpringBoot2.models.Product;
 import com.pluralsight.NorthwindTradersSpringBoot2.services.ProductService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
+import java.util.List;
 import java.util.Scanner;
 
 @SpringBootApplication
@@ -19,12 +21,12 @@ public class NorthwindTradersSpringBoot2Application {
 		int choice;
 		do {
 			// Displaying the menu options to the user.
-			System.out.println("========== Ledger Application ==========");
-			System.out.println("1. List Transactions");
-			System.out.println("2. Add Transaction");
-			System.out.println("3. Update Transaction");
-			System.out.println("4. Delete Transaction");
-			System.out.println("5. Search Transaction");
+			System.out.println("========== NorthwindTradersSpringBoot Application ==========");
+			System.out.println("1. List Products");
+			System.out.println("2. Add Product");
+			System.out.println("3. Update Product");
+			System.out.println("4. Delete Product");
+			System.out.println("5. Search Product");
 			System.out.println("0. Exit");
 			System.out.print("Enter your choice: ");
 			choice = scanner.nextInt();
@@ -33,19 +35,19 @@ public class NorthwindTradersSpringBoot2Application {
 			// Handling user's choice with switch-case.
 			switch (choice) {
 				case 1:
-					listTransactions(transactionService);
+					listProducts(productService);
 					break;
 				case 2:
-					addTransaction(scanner, transactionService);
+					addProduct(scanner, productService);
 					break;
 				case 3:
-					updateTransaction(scanner, transactionService);
+					updateProduct(scanner, productService);
 					break;
 				case 4:
-					deleteTransaction(scanner, transactionService);
+					deleteProduct(scanner, productService);
 					break;
 				case 5:
-					searchTransaction(scanner, transactionService);
+					searchProduct(scanner, productService);
 					break;
 				case 0:
 					System.out.println("Exiting...");
@@ -58,85 +60,85 @@ public class NorthwindTradersSpringBoot2Application {
 		scanner.close(); // Closing the scanner resource.
 	}
 
-	private static void listTransactions(TransactionService transactionService) {
-		// This method retrieves and displays a list of all transactions.
-		System.out.println("========== List of Transactions ==========");
-		List<Transaction> transactions = transactionService.getAllTransactions();
-		for (Transaction transaction : transactions) {
-			System.out.println(transaction); // Prints each transaction.
+	private static void listProducts(ProductService productService) {
+		// This method retrieves and displays a list of all products.
+		System.out.println("========== List of Products ==========");
+		List<Product> products = productService.getAllProducts();
+		for (Product product : products) {
+			System.out.println(product); // Prints each product.
 		}
 		System.out.println(); // Adds an empty line for better readability.
 	}
 
-	private static void addTransaction(Scanner scanner, TransactionService transactionService) {
-		// This method adds a new transaction based on user input.
-		System.out.print("Enter transaction amount: ");
+	private static void addProduct(Scanner scanner, ProductService productService) {
+		// This method adds a new product based on user input.
+		System.out.print("Enter product price: ");
 		double amount = scanner.nextDouble();
 		scanner.nextLine(); // Consumes the newline character.
 		System.out.print("Enter vendor name: ");
 		String vendor = scanner.nextLine();
 
-		Transaction transaction = new Transaction(amount, vendor);
-		Transaction newTransaction = transactionService.addTransaction(transaction); // Adds the transaction to the service.
+		Product product = new Product(amount, vendor);
+		Product newProduct = productService.addProduct(product); // Adds the product to the service.
 
-		System.out.println("Transaction added successfully.\n");
-		System.out.println(newTransaction);
+		System.out.println("Product added successfully.\n");
+		System.out.println(newProduct);
 		System.out.println();
 	}
 
-	private static void updateTransaction(Scanner scanner, TransactionService transactionService) {
-		// This method updates an existing transaction based on user input.
-		System.out.print("Enter the transaction ID to update: ");
-		int transactionId = scanner.nextInt();
+	private static void updateProduct(Scanner scanner, ProductService productService) {
+		// This method updates an existing product based on user input.
+		System.out.print("Enter the product ID to update: ");
+		int productId = scanner.nextInt();
 		scanner.nextLine(); // Consumes the newline character.
 
-		Transaction existingTransaction = transactionService.getTransactionById(transactionId);
-		if (existingTransaction == null) {
-			System.out.println("Transaction not found.\n");
+		Product existingProduct = productService.getProductById(productId);
+		if (existingProduct == null) {
+			System.out.println("Product not found.\n");
 			return;
 		}
 
-		System.out.print("Enter new transaction amount: ");
+		System.out.print("Enter new product amount: ");
 		double amount = scanner.nextDouble();
 		scanner.nextLine(); // Consumes the newline character.
 		System.out.print("Enter new vendor name: ");
 		String vendor = scanner.nextLine();
 
-		Transaction updatedTransaction = new Transaction(transactionId, amount, vendor);
-		transactionService.updateTransaction(transactionId, updatedTransaction); // Updates the transaction.
+		Product updatedProduct = new Product(productId, amount, vendor);
+		productService.updateProduct(productId, updatedProduct); // Updates the product.
 
-		System.out.println("Transaction updated successfully.\n");
+		System.out.println("Product updated successfully.\n");
 	}
 
-	private static void deleteTransaction(Scanner scanner, TransactionService transactionService) {
-		// This method deletes a transaction based on the transaction ID provided by the user.
-		System.out.print("Enter the transaction ID to delete: ");
-		int transactionId = scanner.nextInt();
+	private static void deleteProduct(Scanner scanner, ProductService productService) {
+		// This method deletes a product based on the product ID provided by the user.
+		System.out.print("Enter the product ID to delete: ");
+		int productId = scanner.nextInt();
 		scanner.nextLine(); // Consumes the newline character.
 
-		Transaction existingTransaction = transactionService.getTransactionById(transactionId);
-		if (existingTransaction == null) {
-			System.out.println("Transaction not found.\n");
+		Product existingProduct = productService.getProductById(productId);
+		if (existingProduct == null) {
+			System.out.println("Product not found.\n");
 			return;
 		}
 
-		transactionService.deleteTransaction(transactionId); // Deletes the transaction.
+		productService.deleteProduct(productId); // Deletes the product.
 
-		System.out.println("Transaction deleted successfully.\n");
+		System.out.println("Product deleted successfully.\n");
 	}
 
-	private static void searchTransaction(Scanner scanner, TransactionService transactionService) {
-		// This method searches for a transaction based on the transaction ID provided by the user.
-		System.out.print("Enter the transaction ID to search: ");
-		int transactionId = scanner.nextInt();
+	private static void searchProduct(Scanner scanner, ProductService productService) {
+		// This method searches for a product based on the product ID provided by the user.
+		System.out.print("Enter the product ID to search: ");
+		int productId = scanner.nextInt();
 		scanner.nextLine(); // Consumes the newline character.
 
-		Transaction transaction = transactionService.getTransactionById(transactionId);
-		if (transaction == null) {
-			System.out.println("Transaction not found.\n");
+		Product product = productService.getProductById(productId);
+		if (product == null) {
+			System.out.println("Product not found.\n");
 		} else {
-			System.out.println("========== Transaction Details ==========");
-			System.out.println(transaction); // Displays the details of the found transaction.
+			System.out.println("========== Product Details ==========");
+			System.out.println(product); // Displays the details of the found product.
 			System.out.println();
 		}
 	}
