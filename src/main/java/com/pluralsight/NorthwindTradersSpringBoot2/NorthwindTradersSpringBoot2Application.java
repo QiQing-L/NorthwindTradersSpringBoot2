@@ -115,7 +115,7 @@ public class NorthwindTradersSpringBoot2Application {
 		scanner.nextLine(); // Consumes the newline character.
 
 
-		Product updatedProduct = new Product(productName, categoryId, unitPrice);
+		Product updatedProduct = new Product(productId, productName, categoryId, unitPrice);
 		productService.updateProduct(productId, updatedProduct); // Updates the product.
 
 		System.out.println("Product updated successfully.\n");
