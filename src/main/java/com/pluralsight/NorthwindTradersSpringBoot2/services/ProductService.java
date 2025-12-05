@@ -18,7 +18,6 @@ public class ProductService {
     /**
      * Autowired constructor for dependency injection.
      * Spring will inject an implementation of IProductDAO when ProductService is created.
-     *
      * @param productDAO the DAO implementation to be used by this service.
      */
     @Autowired // Injects the productDAO implementation.
@@ -28,7 +27,6 @@ public class ProductService {
 
     /**
      * Adds a new product.
-     *
      * @param product the product to add.
      * @return the new product
      */
@@ -38,7 +36,6 @@ public class ProductService {
 
     /**
      * Retrieves all products.
-     *
      * @return a list of all products.
      */
     public List<Product> getAllProducts() {
@@ -47,7 +44,6 @@ public class ProductService {
 
     /**
      * Retrieves a product by its ID.
-     *
      * @param productId the ID of the product.
      * @return the product with the specified ID, or null if not found.
      */
@@ -57,7 +53,6 @@ public class ProductService {
 
     /**
      * Updates an existing product.
-     *
      * @param product the product with updated details.
      */
     public void updateProduct(int productId, Product product) {
@@ -66,7 +61,6 @@ public class ProductService {
 
     /**
      * Deletes a product.
-     *
      * @param productId The ID of the product to delete.
      */
     public void deleteProduct(int productId) {

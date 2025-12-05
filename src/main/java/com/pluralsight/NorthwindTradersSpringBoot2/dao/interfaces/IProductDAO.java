@@ -7,12 +7,11 @@ import java.util.List;
 
 /**
  * Interface for Data Access Object (DAO) operations related to the Product model.
- * This interface defines the standard operations to be performed on the Product data.
  */
 public interface IProductDAO {
 
     /**
-     * Adds a new product to the data store.
+     * Adds a new product to products.
      *
      * @param product The Product object to be added.
      * @return the new product
@@ -20,22 +19,22 @@ public interface IProductDAO {
     Product add(Product product);
 
     /**
-     * Retrieves all products from the data store.
+     * Retrieves all products from products.
      *
      * @return A list of all products.
      */
     List<Product> getAllProducts();
 
     /**
-     * Retrieves a specific product by its ID.
+     * Retrieves a specific product by its productId.
      *
-     * @param productId The ID of the product to retrieve.
+     * @param productId The productId of the product to retrieve.
      * @return The Product object if found, or null otherwise.
      */
     Product getProductById(int productId);
 
     /**
-     * Updates an existing product in the data store.
+     * Updates an existing product in the data.
      *
      * @param productId The ID of the product to update.
      * @param product The Product object with updated information.
@@ -43,7 +42,7 @@ public interface IProductDAO {
     void update(int productId, Product product);
 
     /**
-     * Deletes a product from the data store.
+     * Deletes a product from the data.
      *
      * @param productId The ID of the product to delete.
      */

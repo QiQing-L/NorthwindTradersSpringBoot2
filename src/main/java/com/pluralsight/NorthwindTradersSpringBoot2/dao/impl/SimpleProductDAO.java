@@ -14,17 +14,17 @@ public class SimpleProductDAO implements IProductDAO {
     public SimpleProductDAO() {
         this.products = new ArrayList<>();
         // Add some initial products
-        products.add(new Product(1, "Chai", 1, 18.00));
-        products.add(new Product(2, "Chang", 1,19.00));
-        products.add(new Product(3, "Aniseed Syrup", 2, 10.00));
+        products.add(new Product(1, "Chai Tea", 1, 20.00));
+        products.add(new Product(2, "Fishball", 1,9.00));
+        products.add(new Product(3, "Maple Syrup", 2, 33.00));
     }
 
     @Override
     public Product add(Product product) {
         int maxId = 0;
-        for (Product t : products) {
-            if (t.getProductId() > maxId) {
-                maxId = t.getProductId();
+        for (Product p : products) {
+            if (p.getProductId() > maxId) {
+                maxId = p.getProductId();
             }
         }
         product.setProductId(maxId + 1); // Increment max ID by 1

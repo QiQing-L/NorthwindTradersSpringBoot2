@@ -72,13 +72,18 @@ public class NorthwindTradersSpringBoot2Application {
 
 	private static void addProduct(Scanner scanner, ProductService productService) {
 		// This method adds a new product based on user input.
-		System.out.print("Enter product price: ");
-		double amount = scanner.nextDouble();
-		scanner.nextLine(); // Consumes the newline character.
-		System.out.print("Enter vendor name: ");
-		String vendor = scanner.nextLine();
+		System.out.print("Enter product name: ");
+		String productName = scanner.nextLine();
 
-		Product product = new Product(amount, vendor);
+		System.out.print("Enter product category Id: ");
+		int categoryId = scanner.nextInt();
+		scanner.nextLine();
+
+		System.out.print("Enter product unit price: ");
+		double unitPrice = scanner.nextDouble();
+		scanner.nextLine();
+
+		Product product = new Product(productName, categoryId, unitPrice);
 		Product newProduct = productService.addProduct(product); // Adds the product to the service.
 
 		System.out.println("Product added successfully.\n");
@@ -98,13 +103,19 @@ public class NorthwindTradersSpringBoot2Application {
 			return;
 		}
 
-		System.out.print("Enter new product amount: ");
-		double amount = scanner.nextDouble();
-		scanner.nextLine(); // Consumes the newline character.
-		System.out.print("Enter new vendor name: ");
-		String vendor = scanner.nextLine();
+		System.out.print("Enter new product name: ");
+		String productName = scanner.nextLine();
 
-		Product updatedProduct = new Product(productId, amount, vendor);
+		System.out.print("Enter new product category Id: ");
+		int categoryId = scanner.nextInt();
+		scanner.nextLine();
+
+		System.out.print("Enter new product unit price: ");
+		double unitPrice = scanner.nextDouble();
+		scanner.nextLine(); // Consumes the newline character.
+
+
+		Product updatedProduct = new Product(productName, categoryId, unitPrice);
 		productService.updateProduct(productId, updatedProduct); // Updates the product.
 
 		System.out.println("Product updated successfully.\n");
